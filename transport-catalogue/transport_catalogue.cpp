@@ -7,15 +7,15 @@
 
 using namespace std;
 
-void TransportCatalogue::AddBus(Bus& bus) {
-	buses_[bus.name] = bus;
+void TransportCatalogue::AddBus(Bus& bus, string& name) {
+	buses_[name] = bus;
 	for(const auto s: bus.stops) {
-		buses_by_stop_[s].insert(bus.name);
+		buses_by_stop_[s].insert(name);
 	}
 }
 
-void TransportCatalogue::AddStop(Stop& stop) {
-	stops_[stop.name] = stop;
+void TransportCatalogue::AddStop(Stop& stop, string& name) {
+	stops_[name] = stop;
 }
 
 int TransportCatalogue::CalcUnicStops(string_view bus_name) {

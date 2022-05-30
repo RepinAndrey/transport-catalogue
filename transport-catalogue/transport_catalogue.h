@@ -12,14 +12,12 @@ enum BusType {
 };
 
 struct Stop {
-	std::string name;
 	double longitude;
 	double lattitude;
 	std::unordered_map<std::string, int> distances;
 };
 
 struct Bus {
-	std::string name;
 	BusType type;
 	std::vector<std::string> stops;
 };
@@ -45,8 +43,8 @@ private:
 class TransportCatalogue {
 public:
 	TransportCatalogue() = default;
-	void AddBus(Bus&);
-	void AddStop(Stop&);
+	void AddBus(Bus&, std::string&);
+	void AddStop(Stop&, std::string&);
 	int CalcUnicStops(std::string_view);
 	int CalcStops(std::string_view);
 	double CalcRouteCoordinateLength(std::string_view);

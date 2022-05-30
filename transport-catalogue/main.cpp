@@ -46,13 +46,15 @@ void LoadInpQueries(const vector<string> & inp_queries, TransportCatalogue& cata
 	for(const auto line : inp_queries) {
 		if(line[0] == 'S') {
 			Stop stop;
-			ParseStop(line, stop);
-			catalogue.AddStop(stop);
+			string name;
+			ParseStop(line, stop, name);
+			catalogue.AddStop(stop, name);
 		}
 		else if(line[0] == 'B') {
 			Bus bus;
-			ParseBus(line, bus);
-			catalogue.AddBus(bus);
+			string name;
+			ParseBus(line, bus, name);
+			catalogue.AddBus(bus, name);
 		}
 	}
 	catalogue.FillDistancesBetweenStops();

@@ -15,10 +15,10 @@ tuple<string, int> ParseDistance(string_view line) {
 	return make_pair(stop, dist);
 }
 
-void ParseStop(string_view line, Stop& stop) {
+void ParseStop(string_view line, Stop& stop, string& name) {
 	size_t first = line.find(" ");
 	size_t second = line.find(":");
-	stop.name = line.substr(first + 1, second - first - 1);
+	name = line.substr(first + 1, second - first - 1);
 	line.remove_prefix(second + 1);
 		
 	size_t pos = 0;
@@ -48,13 +48,13 @@ void ParseStop(string_view line, Stop& stop) {
 	} while( pos != string::npos);
 }
 
-void ParseBus(string_view line, Bus& bus) {
+void ParseBus(string_view line, Bus& bus, string& name) {
 	size_t first = line.find(" ");
 	size_t second = line.find(":");
 	size_t third = line.find(">");
 	
 	string strBusType;
-	bus.name = string(line.substr(first + 1, second - first - 1));
+	name = string(line.substr(first + 1, second - first - 1));
 	line.remove_prefix(second + 1);
 	if(third != line.npos) {
 		bus.type = BusType::ring;
